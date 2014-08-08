@@ -278,12 +278,12 @@ M.format_topcoll.get_toggle_pos = function(togglenum) {
 
 M.format_topcoll.get_min_digit = function() {
     "use strict";
-    return ':';
+    return '?';
 };
 
 M.format_topcoll.get_max_digit = function() {
     "use strict";
-    return 'y';
+    return '~';
 };
 
 M.format_topcoll.get_toggle_flag = function(togglenum, togglecharpos) {
@@ -315,10 +315,10 @@ M.format_topcoll.get_toggle_flag = function(togglenum, togglecharpos) {
 
 M.format_topcoll.decode_character_to_value = function(character) {
     "use strict";
-    return character.charCodeAt(0) - 58;
+    return character.charCodeAt(0) - 63;
 }
 
 M.format_topcoll.encode_value_to_character = function(val) {
     "use strict";
-    return String.fromCharCode(val + 58);
+    return String.fromCharCode(val + 63);
 };
