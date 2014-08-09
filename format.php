@@ -89,6 +89,12 @@ if (!empty($displaysection)) {
     $userpreference = get_user_preferences('topcoll_toggle_' . $course->id);
     $renderer->set_user_preference($userpreference);
 
+
+    // TEST CODE.
+    for ($i = 0; $i < 64; $i++) {
+        user_preference_allow_ajax_update('topcoll_toggle_'.$i.'_' . $course->id, PARAM_TEXT);
+    }
+
     $defaultuserpreference = clean_param(get_config('format_topcoll', 'defaultuserpreference'), PARAM_INT);
     $renderer->set_default_user_preference($defaultuserpreference);
 

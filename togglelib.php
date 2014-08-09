@@ -34,6 +34,9 @@
 
 class topcoll_togglelib {
 
+    // Digits used = ":;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxy";
+    // Note: An ':' is 58 Ascii so to go between six digit base 2 and this then add / substract 58.
+
     // Digits used = "?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
     // Note: An '?' is 63 Ascii so to go between six digit base 2 and this then add / substract 63.
     //       This has been chosen to avoid digits which are in the old method.
@@ -115,7 +118,7 @@ class topcoll_togglelib {
      * returns char - Digit positionS.
      */
     public function get_min_digit() {
-        return '?';
+        return ':'; // 58 ':' 63 '?'.
     }
 
     /**
@@ -123,7 +126,7 @@ class topcoll_togglelib {
      * returns char - Digit character.
      */
     public function get_max_digit() {
-        return '~';
+        return  'y'; // 58 'y' 63 '~'.
     }
 
     /**
@@ -172,7 +175,7 @@ class topcoll_togglelib {
      * returns int - Character value.
      */
     private static function decode_character_to_value($char) {
-        return ord($char) - 63;
+        return ord($char) - 58;
     }
 
     /**
@@ -181,7 +184,7 @@ class topcoll_togglelib {
      * returns char - Digit.
      */
     private static function encode_value_to_character($val) {
-        return chr($val + 63);
+        return chr($val + 58);
     }
 
     /**

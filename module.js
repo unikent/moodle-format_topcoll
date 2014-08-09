@@ -118,6 +118,8 @@ M.format_topcoll.init = function(Y, theCourseId, theToggleState, theNumSections,
     if (allclosed) {
         allclosed.on('click', this.allCloseClick);
     }
+
+    M.format_topcoll.test_all_states();
 };
 
 M.format_topcoll.toggleClick = function(e) {
@@ -260,7 +262,6 @@ M.format_topcoll.set_toggle_state = function(togglenum, state) {
         value &= ~toggleflag;
     }
     var newchar = this.encode_value_to_character(value);
-    //this.togglestate[togglecharpos-1] = newchar;
     var start = this.togglestate.substring(0,togglecharpos - 1);
     var end = this.togglestate.substring(togglecharpos);
     this.togglestate = start + newchar + end;
@@ -278,12 +279,12 @@ M.format_topcoll.get_toggle_pos = function(togglenum) {
 
 M.format_topcoll.get_min_digit = function() {
     "use strict";
-    return '?';
+    return ':'; // 58 ':' 63 '?';
 };
 
 M.format_topcoll.get_max_digit = function() {
     "use strict";
-    return '~';
+    return 'y'; // 58 'y' 63 '~';
 };
 
 M.format_topcoll.get_toggle_flag = function(togglenum, togglecharpos) {
@@ -315,10 +316,36 @@ M.format_topcoll.get_toggle_flag = function(togglenum, togglecharpos) {
 
 M.format_topcoll.decode_character_to_value = function(character) {
     "use strict";
-    return character.charCodeAt(0) - 63;
+    return character.charCodeAt(0) - 58;
 }
 
 M.format_topcoll.encode_value_to_character = function(val) {
     "use strict";
-    return String.fromCharCode(val + 63);
+    return String.fromCharCode(val + 58);
+};
+
+M.format_topcoll.test_all_states = function() {
+    "use strict";
+    // Reset for this course.
+    console.log('test_all_states: togglestate:' + this.togglestate);
+    console.log('test_all_states: reset course.');
+    M.format_topcoll.resetState(M.format_topcoll.get_min_digit());
+    M.format_topcoll.save_toggles();
+    console.log('test_all_states: togglestate:' + this.togglestate);
+
+    // Loop through all possible states, this involves the first six toggles.
+    console.log('test_all_states: start loop.');
+    var state = 0;
+    var end = this.togglestate.substring(1);
+
+    for (state = 0; state < 64; state++) { 
+        var newchar = this.encode_value_to_character(state);
+        this.togglestate = newchar + end;
+        this.save_toggles();
+        console.log('test_all_states: newchar: ' + newchar + ' - togglestate:' + this.togglestate);
+
+        // user_preference_allow_ajax_update('topcoll_toggle_'.i.'_' . $course->id, PARAM_TEXT);
+        M.util.set_user_preference('topcoll_toggle_' + state + '_' + this.courseid, this.togglestate);
+    }
+    console.log('test_all_states: end loop.');
 };
