@@ -92,8 +92,13 @@ if (!empty($displaysection)) {
 
     // TEST CODE.
     for ($i = 0; $i < 64; $i++) {
-        user_preference_allow_ajax_update('topcoll_toggle_'.$i.'_' . $course->id, PARAM_TEXT);
+        user_preference_allow_ajax_update('topcoll_toggle_'.$i.'_' . $course->id, PARAM_RAW);
     }
+    // Test clean_param to see if it accepts '<' and '>' for PARAM_TEXT as stated in moodlelib.php.
+    echo '<h3>PARAM_TEXT < : '.clean_param('<',PARAM_TEXT).'</h3>';
+    echo '<h3>PARAM_TEXT > : '.clean_param('>',PARAM_TEXT).'</h3>';
+    echo '<h3>PARAM_RAW  < : '.clean_param('<',PARAM_RAW).'</h3>';
+    echo '<h3>PARAM_RAW  > : '.clean_param('>',PARAM_RAW).'</h3>';
 
     $defaultuserpreference = clean_param(get_config('format_topcoll', 'defaultuserpreference'), PARAM_INT);
     $renderer->set_default_user_preference($defaultuserpreference);
