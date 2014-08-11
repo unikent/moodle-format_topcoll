@@ -85,15 +85,17 @@ $renderer->set_portable($portable);
 if (!empty($displaysection)) {
     $renderer->print_single_section_page($course, null, null, null, null, $displaysection);
 } else {
-    user_preference_allow_ajax_update('topcoll_toggle_' . $course->id, PARAM_TEXT);
+    user_preference_allow_ajax_update('topcoll_toggle_' . $course->id, PARAM_TOPCOLL);
     $userpreference = get_user_preferences('topcoll_toggle_' . $course->id);
     $renderer->set_user_preference($userpreference);
 
 
     // TEST CODE.
     for ($i = 0; $i < 64; $i++) {
-        user_preference_allow_ajax_update('topcoll_toggle_'.$i.'_' . $course->id, PARAM_RAW);
+        user_preference_allow_ajax_update('topcoll_toggle_'.$i.'_' . $course->id, PARAM_TOPCOLL);
     }
+    user_preference_allow_ajax_update('topcoll_toggle_bf_' . $course->id, PARAM_TOPCOLL);
+    user_preference_allow_ajax_update('topcoll_toggle_af_' . $course->id, PARAM_TOPCOLL);
     // Test clean_param to see if it accepts '<' and '>' for PARAM_TEXT as stated in moodlelib.php.
     echo '<h3>PARAM_TEXT < : '.clean_param('<',PARAM_TEXT).'</h3>';
     echo '<h3>PARAM_TEXT > : '.clean_param('>',PARAM_TEXT).'</h3>';

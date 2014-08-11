@@ -208,7 +208,7 @@ M.format_topcoll.to2baseString = function(thirtysix) {
 M.format_topcoll.save_toggles = function() {
     "use strict";
     if (this.togglePersistence == 1) { // Toggle persistence - 1 = on, 0 = off.
-        M.util.set_user_preference('topcoll_toggle_' + this.courseid, this.togglestate);
+        M.format_topcoll.set_user_preference('topcoll_toggle_' + this.courseid, this.togglestate);
     }
 };
 
@@ -324,6 +324,38 @@ M.format_topcoll.encode_value_to_character = function(val) {
     return String.fromCharCode(val + 58);
 };
 
+/**
+ * Makes a best effort to connect back to Moodle to update a user preference,
+ * however, there is no mechanism for finding out if the update succeeded.
+ *
+ * Before you can use this function in your JavsScript, you must have called
+ * user_preference_allow_ajax_update from moodlelib.php to tell Moodle that
+ * the udpate is allowed, and how to safely clean and submitted values.
+ *
+ * @param String name the name of the setting to udpate.
+ * @param String the value to set it to.
+ */
+M.format_topcoll.set_user_preference = function(name, value) {
+    YUI().use('io', function(Y) {
+        var url = M.cfg.wwwroot + '/course/format/topcoll/settopcollpref.php?sesskey=' +
+                M.cfg.sesskey + '&pref=' + encodeURI(name) + '&value=' + encodeURI(value);
+
+        // If we are a developer, ensure that failures are reported.
+        var cfg = {
+                method: 'get',
+                on: {}
+            };
+        if (M.cfg.developerdebug) {
+            cfg.on.failure = function(id, o, args) {
+                console.log("Error updating topcoll preference '" + name + "' using AJAX.  Almost certainly your session has timed out.  Clicking this link will repeat the AJAX call that failed so you can see the error: ");
+            }
+        }
+
+        // Make the request.
+        Y.io(url, cfg);
+    });
+};
+
 M.format_topcoll.test_all_states = function() {
     "use strict";
     // Reset for this course.
@@ -341,11 +373,13 @@ M.format_topcoll.test_all_states = function() {
     for (state = 0; state < 64; state++) { 
         var newchar = this.encode_value_to_character(state);
         this.togglestate = newchar + end;
-        this.save_toggles();
         console.log('test_all_states: newchar: ' + newchar + ' - togglestate:' + this.togglestate);
 
         // user_preference_allow_ajax_update('topcoll_toggle_'.i.'_' . $course->id, PARAM_TEXT);
-        M.util.set_user_preference('topcoll_toggle_' + state + '_' + this.courseid, this.togglestate);
+        //M.util.set_user_preference('topcoll_toggle_' + state + '_' + this.courseid, this.togglestate);
+        M.format_topcoll.set_user_preference('topcoll_toggle_' + state + '_' + this.courseid, this.togglestate);
     }
+    M.format_topcoll.set_user_preference('topcoll_toggle_bf_' + this.courseid, '9:');
+    M.format_topcoll.set_user_preference('topcoll_toggle_af_' + this.courseid, 'z:');
     console.log('test_all_states: end loop.');
 };
