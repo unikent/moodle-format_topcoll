@@ -296,10 +296,12 @@ function clean_topcoll_param($param, $type) {
         case PARAM_TOPCOLL:
             $param = fix_utf8($param);
 
-            // We do not want any guessing here, either the name is correct or not
-            // please note only normalised component names are accepted.
-            if (!preg_match('/[:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]\\^_`abcdefghijklmnopqrstuvwxy]+$/', $param)) {
-                return '';
+            $chars = strlen($param);
+            for ($i = 0; $i < $chars; $i++) {
+                $charval = ord($param[$i]);
+                if (($charval < 58) || ($charval > 121)) {
+                    return '';
+                }
             }
             return $param;
 
