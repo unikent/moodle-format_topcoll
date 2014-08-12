@@ -17,12 +17,15 @@
 /**
  * Code to update a user preference in response to an ajax call.
  *
- * You should not send requests to this script directly. Instead use the set_user_preference
- * function in javascript_static.js.
+ * You should not send requests to this script directly.  Instead use the set_user_preference
+ * function in /course/format/topcol/module.js.
  *
- * @package    core
- * @category   preference
- * @copyright  2008 Tim Hunt
+ * @package    course/format
+ * @subpackage topcoll
+ * @version    See the value of '$plugin->version' in below.
+ * @copyright  &copy; 2014-onwards G J Barnard based upon code originally written by Tim Hunt.
+ * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
+ * @link       http://docs.moodle.org/en/Collapsed_Topics_course_format
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -34,13 +37,13 @@ if (!confirm_sesskey()) {
     print_error('invalidsesskey');
 }
 
-// Get the name of the preference to update, and check it is allowed.
+// Get the name of the preference to update, and check that it is allowed.
 $name = required_param('pref', PARAM_RAW);
 if (!isset($USER->ajax_updatable_user_prefs[$name])) {
     print_error('notallowedtoupdateprefremotely');
 }
 
-// Get and the value.
+// Get and set the value.
 $value = required_topcoll_param('value', $USER->ajax_updatable_user_prefs[$name]);
 error_log($name.' is before: '.$USER->ajax_updatable_user_prefs[$name].' after: '.$value);
 // Update

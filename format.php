@@ -28,7 +28,7 @@
  * @copyright  &copy; 2009-onwards G J Barnard in respect to modifications of standard topics format.
  * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
  * @link       http://docs.moodle.org/en/Collapsed_Topics_course_format
- * @license    http://www.gnu.org/copyleft/gpl.html GNU Public License
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
 defined('MOODLE_INTERNAL') || die();
@@ -89,13 +89,18 @@ if (!empty($displaysection)) {
     $userpreference = get_user_preferences('topcoll_toggle_' . $course->id);
     $renderer->set_user_preference($userpreference);
 
-
     // TEST CODE.
     for ($i = 0; $i < 64; $i++) {
-        user_preference_allow_ajax_update('topcoll_toggle_'.$i.'_' . $course->id, PARAM_TOPCOLL);
+        user_preference_allow_ajax_update('topcoll_toggle_a'.$i.'_' . $course->id, PARAM_TOPCOLL);
+        user_preference_allow_ajax_update('topcoll_toggle_b'.$i.'_' . $course->id, PARAM_TOPCOLL);
+        user_preference_allow_ajax_update('topcoll_toggle_c'.$i.'_' . $course->id, PARAM_TOPCOLL);
     }
     user_preference_allow_ajax_update('topcoll_toggle_bf_' . $course->id, PARAM_TOPCOLL);
+    user_preference_allow_ajax_update('topcoll_toggle_bf2_' . $course->id, PARAM_TOPCOLL);
+    user_preference_allow_ajax_update('topcoll_toggle_bf3_' . $course->id, PARAM_TOPCOLL);
     user_preference_allow_ajax_update('topcoll_toggle_af_' . $course->id, PARAM_TOPCOLL);
+    user_preference_allow_ajax_update('topcoll_toggle_af2_' . $course->id, PARAM_TOPCOLL);
+    user_preference_allow_ajax_update('topcoll_toggle_af3_' . $course->id, PARAM_TOPCOLL);
     // Test clean_param to see if it accepts '<' and '>' for PARAM_TEXT as stated in moodlelib.php.
     echo '<h3>PARAM_TEXT < : '.clean_param('<',PARAM_TEXT).'</h3>';
     echo '<h3>PARAM_TEXT > : '.clean_param('>',PARAM_TEXT).'</h3>';

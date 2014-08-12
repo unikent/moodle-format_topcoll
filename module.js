@@ -330,9 +330,9 @@ M.format_topcoll.encode_value_to_character = function(val) {
  *
  * Before you can use this function in your JavsScript, you must have called
  * user_preference_allow_ajax_update from moodlelib.php to tell Moodle that
- * the udpate is allowed, and how to safely clean and submitted values.
+ * the update is allowed, and how to safely clean and submitted values.
  *
- * @param String name the name of the setting to udpate.
+ * @param String name the name of the setting to update.
  * @param String the value to set it to.
  */
 M.format_topcoll.set_user_preference = function(name, value) {
@@ -368,18 +368,21 @@ M.format_topcoll.test_all_states = function() {
     // Loop through all possible states, this involves the first six toggles.
     console.log('test_all_states: start loop.');
     var state = 0;
-    var end = this.togglestate.substring(1);
 
     for (state = 0; state < 64; state++) { 
         var newchar = this.encode_value_to_character(state);
-        this.togglestate = newchar + end;
         console.log('test_all_states: newchar: ' + newchar + ' - togglestate:' + this.togglestate);
 
-        // user_preference_allow_ajax_update('topcoll_toggle_'.i.'_' . $course->id, PARAM_TEXT);
         //M.util.set_user_preference('topcoll_toggle_' + state + '_' + this.courseid, this.togglestate);
-        M.format_topcoll.set_user_preference('topcoll_toggle_' + state + '_' + this.courseid, this.togglestate);
+        M.format_topcoll.set_user_preference('topcoll_toggle_a' + state + '_' + this.courseid, newchar);
+        M.format_topcoll.set_user_preference('topcoll_toggle_b' + state + '_' + this.courseid, newchar + ':');
+        M.format_topcoll.set_user_preference('topcoll_toggle_c' + state + '_' + this.courseid, ':' + newchar);
     }
-    M.format_topcoll.set_user_preference('topcoll_toggle_bf_' + this.courseid, '9:');
-    M.format_topcoll.set_user_preference('topcoll_toggle_af_' + this.courseid, 'z:');
+    M.format_topcoll.set_user_preference('topcoll_toggle_bf_' + this.courseid, '9');
+    M.format_topcoll.set_user_preference('topcoll_toggle_af_' + this.courseid, 'z');
+    M.format_topcoll.set_user_preference('topcoll_toggle_bf2_' + this.courseid, '9:');
+    M.format_topcoll.set_user_preference('topcoll_toggle_af2_' + this.courseid, 'z:');
+    M.format_topcoll.set_user_preference('topcoll_toggle_bf3_' + this.courseid, ':9');
+    M.format_topcoll.set_user_preference('topcoll_toggle_af3_' + this.courseid, ':z');
     console.log('test_all_states: end loop.');
 };
