@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
     <!--[if lt IE 9]>
@@ -38,25 +38,25 @@
 <h1>
 <a id="required-version-of-moodle" class="anchor" href="#required-version-of-moodle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Required version of Moodle</h1>
 
-<p>This version works with Moodle version 2014111000.00 release 2.8 (Build: 20141110) and above within the 2.8 branch until the
+<p>This version works with Moodle version 2015051100.00 2.9 (Build: 20150511) and above within the 2.9 branch until the
 next release.</p>
 
 <p>Please ensure that your hardware and software complies with 'Requirements' in 'Installing Moodle' on
-'docs.moodle.org/28/en/Installing_Moodle'.</p>
+'docs.moodle.org/29/en/Installing_Moodle'.</p>
 
 <h1>
 <a id="downloads-and-documentation" class="anchor" href="#downloads-and-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Downloads and documentation</h1>
 
 <p>The primary source for downloading this branch of the format is <a href="https://moodle.org/plugins/view.php?plugin=format_topcoll">https://moodle.org/plugins/view.php?plugin=format_topcoll</a>
-with 'Select Moodle version:' set at 'Moodle 2.8'.</p>
+with 'Select Moodle version:' set at 'Moodle 2.9'.</p>
 
-<p>The secondary source is a tagged version with the v2.8 prefix on <a href="https://github.com/gjb2048/moodle-format_topcoll/tags">https://github.com/gjb2048/moodle-format_topcoll/tags</a></p>
+<p>The secondary source is a tagged version with the v2.9 prefix on <a href="https://github.com/gjb2048/moodle-format_topcoll/tags">https://github.com/gjb2048/moodle-format_topcoll/tags</a></p>
 
-<p>If you download from the development area - <a href="https://github.com/gjb2048/moodle-format_topcoll/tree/MOODLE_27">https://github.com/gjb2048/moodle-format_topcoll/tree/MOODLE_27</a> - consider that
+<p>If you download from the development area - <a href="https://github.com/gjb2048/moodle-format_topcoll/">https://github.com/gjb2048/moodle-format_topcoll/</a> - consider that
 the code is unstable and not for use in production environments.  This is because I develop the next version in stages
 and use GitHub as a means of backup.  Therefore the code is not finished, subject to alteration and requires testing.</p>
 
-<p>Documented on <a href="http://docs.moodle.org/28/en/Collapsed_Topics_course_format">http://docs.moodle.org/28/en/Collapsed_Topics_course_format</a></p>
+<p>Documented on <a href="http://docs.moodle.org/29/en/Collapsed_Topics_course_format">http://docs.moodle.org/29/en/Collapsed_Topics_course_format</a></p>
 
 <h1>
 <a id="bespoke-changes" class="anchor" href="#bespoke-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bespoke changes</h1>
@@ -91,10 +91,10 @@ Moodle community benefits.</p>
 <p>I develop and maintain for free and any donations to assist me in this endeavour are appreciated.</p>
 
 <h1>
-<a id="new-features-for-this-moodle-28-version" class="anchor" href="#new-features-for-this-moodle-28-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>New features for this Moodle 2.8 version</h1>
+<a id="new-features-for-this-moodle-29-version" class="anchor" href="#new-features-for-this-moodle-29-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>New features for this Moodle 2.9 version</h1>
 
 <ol>
-<li>Same features as version 2.7.1.5 in Moodle 2.7.</li>
+<li>Same features as version 2.8.2.3 in Moodle 2.8.</li>
 </ol>
 
 <h1>
@@ -310,6 +310,42 @@ can be really useful in visualising the issue along with any files you consider 
 
 <h1>
 <a id="version-information" class="anchor" href="#version-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version Information</h1>
+
+<p>Version 2.9.1.1.</p>
+
+<ol>
+<li>Fixed broken default for defaulttoggleiconsize - thanks to Davo Smith - issue #16.</li>
+</ol>
+
+<p>Version 2.9.1.</p>
+
+<ol>
+<li>First stable version for Moodle 2.9.</li>
+</ol>
+
+<p>Version 2.9.0.2.</p>
+
+<ol>
+<li> Added the capability to delete a section.</li>
+<li> Tidy up column padding after testing with Shoehorn.  TODO: Decide if column padding is needed now.</li>
+<li> Removed out of date development test code.</li>
+<li> Removed out of date IE7 styles.</li>
+</ol>
+
+<p>Version 2.9.0.1.</p>
+
+<ol>
+<li> First 'release candidate' version for Moodle 2.9.</li>
+<li> Note: Need to seriously think about using AMD and transitioning to using jQuery instead of YUI as AJAX is possible in jQuery,
+        but almost certainly not in the first instance as YUI is still supported in core.  Modularisation is do-able in AMD
+        with parameters required: <a href="https://docs.moodle.org/dev/Javascript_Modules">https://docs.moodle.org/dev/Javascript_Modules</a>.</li>
+</ol>
+
+<p>Version 2.8.2.3</p>
+
+<ol>
+<li> Fixed logic flaw with section parameters on course URL's when using single page display.</li>
+</ol>
 
 <p>Version 2.8.2.2</p>
 
