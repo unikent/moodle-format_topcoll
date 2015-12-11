@@ -129,6 +129,7 @@ M.format_topcoll.allOpenClick = function(e) {
     e.preventDefault();
     M.format_topcoll.ourYUI.all(".toggledsection").addClass('sectionopen');
     M.format_topcoll.ourYUI.all(".toggle a").addClass('toggle_open').removeClass('toggle_closed');
+    M.format_topcoll.ourYUI.all(".toggle a i.fa").removeClass('fa-chevron-right').addClass('fa-chevron-down');
     M.format_topcoll.resetState(M.format_topcoll.get_max_digit());
     M.format_topcoll.save_toggles();
 };
@@ -137,6 +138,7 @@ M.format_topcoll.allCloseClick = function(e) {
     e.preventDefault();
     M.format_topcoll.ourYUI.all(".toggledsection").removeClass('sectionopen');
     M.format_topcoll.ourYUI.all(".toggle a").addClass('toggle_closed').removeClass('toggle_open');
+    M.format_topcoll.ourYUI.all(".toggle a i.fa").removeClass('fa-chevron-down').addClass('fa-chevron-right');
     M.format_topcoll.resetState(M.format_topcoll.get_min_digit());
     M.format_topcoll.save_toggles();
 };
@@ -154,13 +156,16 @@ M.format_topcoll.resetState = function(dchar) {
 M.format_topcoll.toggle_topic = function(targetNode, toggleNum) {
     "use strict";
     var targetLink = targetNode.one('a');
+    var targetIcon = targetNode.one('a i.fa');
     var state;
     if (!targetLink.hasClass('toggle_open')) {
         targetLink.addClass('toggle_open').removeClass('toggle_closed');
+        targetIcon.removeClass('fa-chevron-right').addClass('fa-chevron-down');
         targetNode.next('.toggledsection').addClass('sectionopen');
         state = true;
     } else {
         targetLink.addClass('toggle_closed').removeClass('toggle_open');
+        targetIcon.removeClass('fa-chevron-down').addClass('fa-chevron-right');
         targetNode.next('.toggledsection').removeClass('sectionopen');
         state = false;
     }
